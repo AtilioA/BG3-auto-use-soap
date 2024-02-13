@@ -10,6 +10,10 @@ function Utils.DebugPrint(level, ...)
   end
 end
 
+function Utils.GetItemUUID(item)
+  return item.TemplateName .. '_' .. item.Guid
+end
+
 -- Is that the UUID? The UID + UUID? What's that even called?
 function Utils.GetChestUUID()
   local chestName = Osi.DB_Camp_UserCampChest:Get(nil, nil)[1][2]

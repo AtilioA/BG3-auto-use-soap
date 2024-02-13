@@ -62,7 +62,7 @@ function GetSoapInInventory(character, shallow)
 
   for _, item in ipairs(inventory) do
     if IsSoap(item.TemplateId) then
-      table.insert(matchedItems, item.TemplateId)
+      table.insert(matchedItems, Utils.GetItemUUID(item))
     end
   end
 
@@ -115,7 +115,7 @@ function DeliverSoapToParty()
   --     end
   --   end
   -- else
-    
+
   -- Send random soap items to camp chest until totalSoapItems matches party size.
   for i = 1, #party - totalSoapItems do
     local randomSoapItem = GetRandomRegularSoap()

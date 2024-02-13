@@ -22,11 +22,6 @@ local function SubscribeToEvents()
       -- Use soap on the character if they have any.
       SoapUsage.HygienizePartyMembers()
     end)
-
-    Ext.Osiris.RegisterListener("TeleportedFromCamp", 1, "after", function(character)
-      Utils.DebugPrint(1, "Teleported from camp. Checking for soap to use for " .. character)
-      SoapUsage.HygienizePartyMembers()
-    end)
   end
 end
 
