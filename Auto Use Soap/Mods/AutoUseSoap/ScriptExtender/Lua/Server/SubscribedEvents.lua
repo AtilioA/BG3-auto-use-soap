@@ -1,7 +1,6 @@
 local function SubscribeToEvents()
   if JsonConfig.GENERAL.enabled == true then
     Utils.DebugPrint(2, "Subscribing to events with JSON config: " .. Ext.Json.Stringify(JsonConfig, { Beautify = true }))
-
     Ext.Osiris.RegisterListener("CombatEnded", 1, "after", function(combatGuid)
       Utils.DebugPrint(1, "Combat ended. Checking for soap to use.")
       SoapUsage.HygienizePartyMembers()
@@ -15,6 +14,11 @@ local function SubscribeToEvents()
 
     Ext.Osiris.RegisterListener("TeleportedToCamp", 1, "after", function(character)
       Utils.DebugPrint(1, "Teleported to camp. Checking for soap to use for " .. character)
+
+      if Utils.GetGUID(character) == Osi.GetHostCharacter() then
+        DeliverSoapToParty()
+      end
+
       -- Use soap on the character if they have any.
       SoapUsage.HygienizePartyMembers()
     end)

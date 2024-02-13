@@ -26,7 +26,7 @@ end
 ---@return string
 function Utils.GetUID(templateuuid)
   if #templateuuid <= 36 then
-      return templateuuid -- Return the original string if it's too short
+    return templateuuid   -- Return the original string if it's too short
   end
 
   local result = string.sub(templateuuid, 1, -37) -- Remove last 36 characters

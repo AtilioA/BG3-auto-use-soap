@@ -1,83 +1,54 @@
 Soap = {}
 
 Soap.regular_soap_items = {
-  "LOOT_Bathroom_Bucket_Sponges_A",
-  "LOOT_Bathroom_Sponge_A",
-  "LOOT_Bathroom_Soap_A",
+  ["LOOT_Bathroom_Bucket_Sponges_A"] = "8e11fada-192f-4042-8c84-dc7b78f32541",
+  ["LOOT_Bathroom_Sponge_A"] = "90aad18c-a1ae-44c9-903f-f9c9433c9362",
+  ["LOOT_Bathroom_Soap_A"] = "d32a68ff-3b6a-4d83-b0c4-0a2c44b93ea9",
 }
 
 Soap.unique_soap_items = {
-  "UNI_WYR_Thiefling_HolyHandSoap",
+  ["UNI_WYR_Thiefling_HolyHandSoap"] = "42d56907-aa68-4f77-a024-3789c323214d"
 }
 
-
 function IsSoap(object)
-  if IsItem(object) then
-    for _, soapItem in ipairs(Soap.regular_soap_items) do
-      if string.match(object, soapItem) then
-        Utils.DebugPrint(2, "Found regular soap item: " .. object)
-        return true
-      end
-    end
-    for _, soapItem in ipairs(Soap.unique_soap_items) do
-      if string.match(object, soapItem) then
-        return true
-      end
+  -- Check against regular and unique soap items by their values (template IDs)
+  for _, soapItem in pairs(Soap.regular_soap_items) do
+    if soapItem == object then
+      return true
     end
   end
-
+  for _, soapItem in pairs(Soap.unique_soap_items) do
+    if soapItem == object then
+      return true
+    end
+  end
   return false
 end
 
 function GetRandomRegularSoap()
-  return Soap.regular_soap_items[math.random(1, #Soap.regular_soap_items)]
-end
-
--- Refactored to include all party members and check for soap in their inventories and camp chest.
-function GetPartySoap()
-  local party = Osi.DB_Players:Get(nil)
-  local inventoriesSoap = {}
-  local totalSoapItems = 0
-
-  for _, character in pairs(party) do
-    local soapItems = GetSoapInInventory(character[1], false)
-    -- Include characters even if they have no soap, indicating an empty table for them.
-    inventoriesSoap[character[1]] = soapItems or {}
-    totalSoapItems = totalSoapItems + (#soapItems or 0)
+  local soapItemsArray = {}
+  for _, value in pairs(Soap.regular_soap_items) do
+    table.insert(soapItemsArray, value)
   end
 
-  local campChestSoap = GetSoapInCampChest() or {}
-  totalSoapItems = totalSoapItems + #campChestSoap
-
-  -- (return total soap count for easy access)
-  return inventoriesSoap, campChestSoap, totalSoapItems
+  local randomIndex = math.random(1, #soapItemsArray)
+  return soapItemsArray[randomIndex]
 end
 
--- Adjusted to use the refactored GetPartySoap, checking total soap count including camp chest.
-function PartyHasEnoughSoap()
-  local _, _, totalSoapItems = GetPartySoap()
-  local party = Osi.DB_Players:Get(nil)
-  local partySize = #party
+function GetSoapInCampChest()
+  local chestGUID = Utils.GetChestUUID()
+  if chestGUID then
+    local matchedItems = {}
+    local items = GetInventory(chestGUID, false, false) -- Assuming GetInventory returns a list of item objects with TemplateId properties
 
-  return totalSoapItems >= partySize
-end
-
-function DeliverSoapToParty()
-  local inventoriesSoap, campChestSoap, totalSoapItems = GetPartySoap()
-  local party = Osi.DB_Players:Get(nil)
-
-  -- Soap has not been delivered yet, so give each character a random soap item.
-  if false then
-    for _, character in pairs(party) do
-      if inventoriesSoap[character[1]] == {} then
-        Osi.TemplateAddTo(GetRandomRegularSoap(), character[1], 1, 1)
+    for _, item in ipairs(items) do
+      if IsSoap(item.TemplateId) then
+        table.insert(matchedItems, item.TemplateName .. "_" .. item.Guid)
       end
     end
+    return matchedItems
   else
-    -- Send random soap items to camp chest until totalSoapItems matches party size.
-    for i = 1, partySize - totalSoapItems do
-      Osi.TemplateAddTo(GetRandomRegularSoap(), Utils.GetChestUUID(), 1, 1)
-    end
+    return {}
   end
 end
 
@@ -90,9 +61,8 @@ function GetSoapInInventory(character, shallow)
   local matchedItems = {}
 
   for _, item in ipairs(inventory) do
-    local itemObject = item.TemplateName .. item.Guid
-    if IsSoap(itemObject) then
-      table.insert(matchedItems, itemObject)
+    if IsSoap(item.TemplateId) then
+      table.insert(matchedItems, item.TemplateId)
     end
   end
 
@@ -103,24 +73,55 @@ function GetSoapInInventory(character, shallow)
   end
 end
 
-function GetSoapInCampChest()
-  local chestGUID = Utils.GetChestUUID()
-  if chestGUID ~= nil then
-    local matchedItems = {}
-    local items = GetInventory(chestGUID, false, false)
+function GetPartySoap()
+  local party = Osi.DB_Players:Get(nil)
+  local inventoriesSoap = {}            -- Placeholder for inventory soap gathering logic
+  local campChestSoap = GetSoapInCampChest() or {}
+  local totalSoapItems = #campChestSoap -- Initialize with count of soap items in camp chest
+  Utils.DebugPrint(2, "Total soap items in camp chest: " .. totalSoapItems)
 
-    for _, item in ipairs(items) do
-      local itemObject = item[1]
-      if IsSoap(itemObject) then
-        table.insert(matchedItems, itemObject)
-      end
-    end
+  for _, character in pairs(party) do
+    local soapItems = GetSoapInInventory(character[1], false)
+    -- Include characters even if they have no soap
+    inventoriesSoap[character[1]] = soapItems or {}
+    totalSoapItems = totalSoapItems + (#soapItems or 0)
+  end
 
-    if #matchedItems > 0 then
-      return matchedItems
-    else
-      return {}
-    end
+  Utils.DebugPrint(2, "Total soap items in party: " .. totalSoapItems)
+
+  return inventoriesSoap, campChestSoap, totalSoapItems
+end
+
+function PartyHasEnoughSoap()
+  local _, _, totalSoapItems = GetPartySoap()
+  local partySize = #Osi.DB_Players:Get(nil) -- This will not get party members idle at camp
+  Utils.DebugPrint(2, "Party size: " .. partySize)
+  return totalSoapItems >= partySize
+end
+
+function DeliverSoapToParty()
+  Utils.DebugPrint(1, "Delivering soap to party members.")
+  local inventoriesSoap, campChestSoap, totalSoapItems = GetPartySoap()
+  local party = Osi.DB_Players:Get(nil)
+  Utils.DebugPrint(2, "Party members: " .. Ext.Json.Stringify(party, { Beautify = true }))
+  Utils.DebugPrint(2, "Inventories soap: " .. Ext.Json.Stringify(inventoriesSoap, { Beautify = true }))
+  Utils.DebugPrint(2, "Camp chest soap: " .. Ext.Json.Stringify(campChestSoap, { Beautify = true }))
+
+  -- -- Soap has not been delivered yet, so give each character a random soap item.
+  -- if false then
+  --   for _, character in pairs(party) do
+  --     if inventoriesSoap[character[1]] == {} then
+  --       Osi.TemplateAddTo(GetRandomRegularSoap(), character[1], 1, 1)
+  --     end
+  --   end
+  -- else
+    
+  -- Send random soap items to camp chest until totalSoapItems matches party size.
+  for i = 1, #party - totalSoapItems do
+    local randomSoapItem = GetRandomRegularSoap()
+    Utils.DebugPrint(2, "Adding random soap item to camp chest: " .. randomSoapItem)
+    Osi.TemplateAddTo(randomSoapItem, Utils.GetChestUUID(), 1)
+    -- end
   end
 end
 
