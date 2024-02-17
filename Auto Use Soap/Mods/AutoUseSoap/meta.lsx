@@ -8,7 +8,7 @@
         <node id="ModuleInfo">
           <attribute id="Author" type="LSString" value="Volitio" />
           <attribute id="CharacterCreationLevelName" type="FixedString" value="" />
-          <attribute id="Description" type="LSString" value="Makes party members automatically use soap after day/combat ends. Adds soap items to camp chest if needed. Configurable through a .json file." />
+          <attribute id="Description" type="LSString" value="Makes party members automatically use soap after combat ends/entering camp. Adds soap items to camp chest if needed. Configurable through a .json file." />
           <attribute id="Folder" type="LSString" value="AutoUseSoap" />
           <attribute id="LobbyLevelName" type="FixedString" value="" />
           <attribute id="MD5" type="LSString" value="" />
