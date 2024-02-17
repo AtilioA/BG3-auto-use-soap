@@ -9,7 +9,7 @@ Config.defaultConfig = {
     },
     FEATURES = {
         add_soap_items = true,     -- Ensure party has enough soap items for each member by adding to the camp chest
-        use_after_day_end = true,  -- Use soap after the day ends (before long rest)
+        use_when_entering_camp = true,  -- Use soap when entering camp
         use_after_combat = true,  -- Use soap after combat ends
     },
     DEBUG = {
