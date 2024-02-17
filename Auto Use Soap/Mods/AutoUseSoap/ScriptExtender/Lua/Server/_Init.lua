@@ -3,7 +3,6 @@ Ext.Require("Server/Config.lua")
 Ext.Require("Server/Helpers/Inventory.lua")
 Ext.Require("Server/Helpers/Soap.lua")
 Ext.Require("Server/SoapUsage.lua")
-Ext.Require("Server/EventHandlers.lua")
 
 MOD_UUID = "cabed99e-5db6-4f0d-a69f-d49e8a20e663"
 local MODVERSION = Ext.Mod.GetMod(MOD_UUID).Info.ModVersion
