@@ -15,8 +15,8 @@ RequireFiles("Shared/", {
     "EventHandlers",
 })
 
-Ext.Require("Server/Helpers/Inventory.lua")
-Ext.Require("Server/Helpers/Soap.lua")
+Ext.Require("Shared/Helpers/Inventory.lua")
+Ext.Require("Shared/Helpers/Soap.lua")
 
 local MODVERSION = Ext.Mod.GetMod(ModuleUUID).Info.ModVersion
 
