@@ -12,11 +12,7 @@ end
 RequireFiles("Shared/", {
     "Helpers/_Init",
     "SubscribedEvents",
-    "EventHandlers",
 })
-
-Ext.Require("Shared/Helpers/Inventory.lua")
-Ext.Require("Shared/Helpers/Soap.lua")
 
 local MODVERSION = Ext.Mod.GetMod(ModuleUUID).Info.ModVersion
 
@@ -27,7 +23,7 @@ else
     table.remove(MODVERSION)
 
     local versionNumber = table.concat(MODVERSION, ".")
-    AUSPrinter(0, "Volitio's Auto Use Soap " .. versionNumber .. " loaded")
+    AUSPrint(0, "Volitio's Auto Use Soap " .. versionNumber .. " loaded")
 end
 
 SoapHelperInstance = Helpers.Soap:New()
