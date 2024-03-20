@@ -15,7 +15,7 @@ function SubscribedEvents.SubscribeToEvents()
       if Config:getCfg().FEATURES.use_when_entering_camp == true then
         AUSPrint(1, "Teleported to camp. Checking for soap to use for " .. character)
 
-        if Helpers.Format:Guid(character) == Osi.GetHostCharacter() and Config:getCfg().FEATURES.add_soap_items == true then
+        if VCHelpers.Format:Guid(character) == Osi.GetHostCharacter() and Config:getCfg().FEATURES.add_soap_items == true then
           SoapHelperInstance:DeliverSoapToParty()
         end
 

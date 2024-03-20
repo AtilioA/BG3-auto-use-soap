@@ -26,6 +26,6 @@ else
     AUSPrint(0, "Volitio's Auto Use Soap " .. versionNumber .. " loaded")
 end
 
-SoapHelperInstance = Helpers.Soap:New()
+SoapHelperInstance = VCHelpers.Soap:New()
 
 SubscribedEvents.SubscribeToEvents()

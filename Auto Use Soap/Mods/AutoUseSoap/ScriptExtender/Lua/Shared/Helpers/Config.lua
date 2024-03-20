@@ -1,4 +1,4 @@
-Config = Helpers.Config:New({
+Config = VCHelpers.Config:New({
   folderName = "AutoUseSoap",
   configFilePath = "auto_use_soap_config.json",
   defaultConfig = {
@@ -11,7 +11,7 @@ Config = Helpers.Config:New({
       use_after_combat = true,       -- Use soap after combat ends
     },
     DEBUG = {
-      level = 0 -- 0 = no debug, 1 = minimal, 2 = verbose logs
+      level = 0 -- 0 = no debug, 1 = minimal, 2 = verbose debug logs
     }
   },
   onConfigReloaded = {}
