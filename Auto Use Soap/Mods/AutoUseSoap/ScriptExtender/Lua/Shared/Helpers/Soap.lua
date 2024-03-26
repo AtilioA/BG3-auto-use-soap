@@ -162,9 +162,9 @@ function VCHelpers.Soap:HygienizePartyMembers()
     character = character[1]
     local soapItems = self:GetSoapInCharacterInventory(character, false)
     if soapItems then
-      for _, soapItem in pairs(soapItems) do
-        AUSPrint(1, "Using soap on " .. character .. " with item " .. soapItem.templateId)
-        Osi.Use(character, soapItem.templateId, "AutoUseSoapAutomaticUsage")
+      for itemUUID, soapItem in pairs(soapItems) do
+        AUSPrint(1, "Using soap on " .. character .. " with item " .. itemUUID)
+        Osi.Use(character, itemUUID, "AutoUseSoapAutomaticUsage")
       end
     end
   end
