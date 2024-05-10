@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<contentList>
+    <content contentuid="hbcf28a23dbf1422d80fc03f8e5c674511017" version="1">Ativar/desativar o mod sem desinstalá-lo.</content>
+    <content contentuid="hd56cfcec100a4ae7bf3997f90dd6bf749b4e" version="1">Ativar mod.</content>
+    <content contentuid="h2b862cb2e21b4c9a8097e3127e490f72d819" version="1">0 = no debug, 1 = minimal, 2 = verbose debug logs.</content>
+    <content contentuid="hff9b05d2f6204910bfe5aedf17242c02g38b" version="1">Nível de prints de depuração.</content>
+    <content contentuid="h1e8e1b52a942477d8c15578ca06ff0831d65" version="1">Automaticamente usar sabão nos membros do grupo após o combate.</content>
+    <content contentuid="hc920e9bb07d341fc8bfca542a0d1b6ded618" version="1">Automaticamente usar sabão nos membros do grupo ao entrar no acampamento.</content>
+    <content contentuid="ha678bfbbe60d41229b954deda0f9e800g767" version="1">Automaticamente adicionar itens de sabão para o baú com base nos membros do grupo ao entrar no acampamento.</content>
+    <content contentuid="hfb4649b892104d0ca91f5e2268346d953c4d" version="1">Usar sabão após o combate</content>
+    <content contentuid="hb3aef57cb6f340f3a3abf358f106f44952f4" version="1">Usar sabão ao entrar no acampamento</content>
+    <content contentuid="h1499aed9f5b74e328577e45013fa0b20ea45" version="1">Adicionar itens de sabão ao grupo</content>
+</contentList>

@@ -1,0 +1,95 @@
+{
+    "SchemaVersion": 1,
+    "Tabs": [
+        {
+            "TabName": "General",
+            "TabId": "general",
+            "Sections": [
+                {
+                    "SectionId": "general_settings",
+                    "SectionName": "General settings",
+                    "Settings": [
+                        {
+                            "Id": "mod_enabled",
+                            "Name": "Enable mod",
+                            "Type": "checkbox",
+                            "Default": true,
+                            "Description": "Toggle the mod on/off without uninstalling it.",
+                            "Tooltip": "Toggle the mod on/off",
+                            "Handles": {
+                                "DescriptionHandle": "hbcf28a23dbf1422d80fc03f8e5c674511017",
+                                "NameHandle": "hd56cfcec100a4ae7bf3997f90dd6bf749b4e"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "SectionId": "debugging_settings",
+                    "SectionName": "Debugging",
+                    "Settings": [
+                        {
+                            "Id": "debug_level",
+                            "Name": "Debug level",
+                            "Type": "slider_int",
+                            "Default": 0,
+                            "Description": "0 = no debug, 1 = minimal, 2 = verbose debug logs.",
+                            "Options": {
+                                "Min": 0,
+                                "Max": 2
+                            },
+                            "Handles": {
+                                "DescriptionHandle": "h2b862cb2e21b4c9a8097e3127e490f72d819",
+                                "NameHandle": "hff9b05d2f6204910bfe5aedf17242c02g38b"
+                            }
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "TabName": "Features",
+            "TabId": "features",
+            "Sections": [
+                {
+                    "SectionId": "General features",
+                    "SectionName": "General features",
+                    "Settings": [
+                        {
+                            "Id": "use_after_combat",
+                            "Name": "Use soap after combat",
+                            "Type": "checkbox",
+                            "Default": false,
+                            "Description": "Whether to automatically use soap on party members after combat ends.\nWARNING: This is a bit buggy with dialogue that triggers combat, so avoid using it until it is fixed.",
+                            "Handles": {
+                                "DescriptionHandle": "h1e8e1b52a942477d8c15578ca06ff0831d65",
+                                "NameHandle": "hfb4649b892104d0ca91f5e2268346d953c4d"
+                            }
+                        },
+                        {
+                            "Id": "use_when_entering_camp",
+                            "Name": "Use soap when entering camp",
+                            "Type": "checkbox",
+                            "Default": true,
+                            "Description": "Whether to automatically use soap on party members when entering a camp.",
+                            "Handles": {
+                                "DescriptionHandle": "hc920e9bb07d341fc8bfca542a0d1b6ded618",
+                                "NameHandle": "hb3aef57cb6f340f3a3abf358f106f44952f4"
+                            }
+                        },
+                        {
+                            "Id": "add_soap_items",
+                            "Name": "Add soap items to party",
+                            "Type": "checkbox",
+                            "Default": true,
+                            "Description": "Whether to automatically add soap items to the party when entering a camp.",
+                            "Handles": {
+                                "DescriptionHandle": "ha678bfbbe60d41229b954deda0f9e800g767",
+                                "NameHandle": "h1499aed9f5b74e328577e45013fa0b20ea45"
+                            }
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}
