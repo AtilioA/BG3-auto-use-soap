@@ -1,28 +1,22 @@
 SubscribedEvents = {}
 
-function SubscribedEvents.SubscribeToEvents()
-  if Config:getCfg().GENERAL.enabled == true then
-    AUSPrint(2, "Subscribing to events with JSON config: " .. Ext.Json.Stringify(Config:getCfg(), { Beautify = true }))
-
-    Ext.Osiris.RegisterListener("CombatEnded", 1, "after", function(combatGuid)
-      if Config:getCfg().FEATURES.use_after_combat == true then
-        AUSPrint(1, "Combat ended. Checking for soap to use for party.")
-        SoapHelperInstance:HygienizePartyMembers()
-      end
-    end)
-
-    Ext.Osiris.RegisterListener("TeleportedToCamp", 1, "after", function(character)
-      if Config:getCfg().FEATURES.use_when_entering_camp == true then
-        AUSPrint(1, "Teleported to camp. Checking for soap to use for " .. character)
-
-        if VCHelpers.Format:Guid(character) == Osi.GetHostCharacter() and Config:getCfg().FEATURES.add_soap_items == true then
-          SoapHelperInstance:DeliverSoapToParty()
+function SubscribedEvents:SubscribeToEvents()
+    local function conditionalWrapper(handler)
+        return function(...)
+            if Mods.BG3MCM.MCMAPI:GetSettingValue("mod_enabled", ModuleUUID) then
+                handler(...)
+            else
+                AUSPrint(1, "Event handling is disabled.")
+            end
         end
+    end
 
-        SoapHelperInstance:HygienizePartyMembers()
-      end
-    end)
-  end
+    AUSPrint(2,
+        "Subscribing to events with JSON config: " ..
+        Ext.Json.Stringify(Mods.BG3MCM.MCMAPI:GetAllModSettings(ModuleUUID), { Beautify = true }))
+
+    Ext.Osiris.RegisterListener("CombatEnded", 1, "after", conditionalWrapper(EHandlers.OnCombatEnded))
+    Ext.Osiris.RegisterListener("TeleportedToCamp", 1, "after", conditionalWrapper(EHandlers.OnTeleportedToCamp))
 end
 
 return SubscribedEvents
