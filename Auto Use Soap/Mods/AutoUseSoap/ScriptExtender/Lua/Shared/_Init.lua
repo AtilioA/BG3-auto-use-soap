@@ -11,8 +11,21 @@ end
 
 RequireFiles("Shared/", {
     "Helpers/_Init",
+    "EventHandlers",
     "SubscribedEvents",
 })
+
+local deps = {
+    VCModuleUUID = "f97b43be-7398-4ea5-8fe2-be7eb3d4b5ca",
+    MCMModuleUUID = "755a8a72-407f-4f0d-9a33-274ac0f0b53d"
+}
+if not Ext.Mod.IsModLoaded(deps.VCModuleUUID) then
+    AUSWarn(0, "Volition Cabinet is missing and is a hard requirement. PLEASE MAKE SURE IT IS ENABLED IN YOUR MOD MANAGER.")
+end
+
+if not Ext.Mod.IsModLoaded(deps.MCMModuleUUID) then
+    AUSWarn(0, "BG3 Mod Configuration Menu is missing and is a hard requirement. PLEASE MAKE SURE IT IS ENABLED IN YOUR MOD MANAGER.")
+end
 
 local MODVERSION = Ext.Mod.GetMod(ModuleUUID).Info.ModVersion
 
@@ -26,6 +39,6 @@ else
     AUSPrint(0, "Volitio's Auto Use Soap " .. versionNumber .. " loaded")
 end
 
-SoapHelperInstance = VCHelpers.Soap:New()
+SoapHelperInstance = Soap:New()
 
 SubscribedEvents.SubscribeToEvents()
