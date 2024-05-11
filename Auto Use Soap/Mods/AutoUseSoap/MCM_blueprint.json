@@ -17,7 +17,7 @@
                             "Description": "Toggle the mod on/off without uninstalling it.",
                             "Tooltip": "Toggle the mod on/off",
                             "Handles": {
-                                "DescriptionHandle": "hbcf28a23dbf1422d80fc03f8e5c674511017",
+                                "DescriptionHandle": "h4e2f5b5ed2a94b4596a20ec6c1f60342dc22",
                                 "NameHandle": "hd56cfcec100a4ae7bf3997f90dd6bf749b4e"
                             }
                         }
@@ -81,7 +81,7 @@
                             "Name": "Add soap items to party",
                             "Type": "checkbox",
                             "Default": true,
-                            "Description": "Whether to automatically add soap items to the party when entering a camp.",
+                            "Description": "Whether to automatically add soap items to camp chest if needed when entering camp.",
                             "Handles": {
                                 "DescriptionHandle": "ha678bfbbe60d41229b954deda0f9e800g767",
                                 "NameHandle": "h1499aed9f5b74e328577e45013fa0b20ea45"

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <contentList>
-    <content contentuid="hbcf28a23dbf1422d80fc03f8e5c674511017" version="1">Ativar/desativar o mod sem desinstalá-lo.</content>
+    <content contentuid="h4e2f5b5ed2a94b4596a20ec6c1f60342dc22" version="1">Ativar/desativar o mod sem desinstalá-lo.</content>
     <content contentuid="hd56cfcec100a4ae7bf3997f90dd6bf749b4e" version="1">Ativar mod.</content>
     <content contentuid="h2b862cb2e21b4c9a8097e3127e490f72d819" version="1">0 = no debug, 1 = minimal, 2 = verbose debug logs.</content>
     <content contentuid="hff9b05d2f6204910bfe5aedf17242c02g38b" version="1">Nível de prints de depuração.</content>
