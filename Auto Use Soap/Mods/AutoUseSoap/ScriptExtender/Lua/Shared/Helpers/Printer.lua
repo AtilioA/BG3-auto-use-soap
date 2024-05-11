@@ -1,4 +1,4 @@
-AUSPrinter = VolitionCabinetPrinter:New { Prefix = "Auto Use Soap", ApplyColor = true, DebugLevel = Mods.BG3MCM.MCMAPI:GetSettingValue("debug_level", ModuleUUID) }
+AUSPrinter = VolitionCabinetPrinter:New { Prefix = "Auto Use Soap", ApplyColor = true, DebugLevel = MCMGet("debug_level") }
 
 -- Update the Printer debug level when the setting is changed, since the value is only used during the object's creation
 Ext.RegisterNetListener("MCM_Saved_Setting", function(call, payload)
