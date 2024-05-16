@@ -1,9 +1,8 @@
 ---@class HelperSoap
 Soap = _Class:Create("HelperSoap", nil)
 
+-- Sponges shouldn't be used as they will consume action points
 Soap.regular_soap_items = {
-    ["LOOT_Bathroom_Bucket_Sponges_A"] = "8e11fada-192f-4042-8c84-dc7b78f32541",
-    ["LOOT_Bathroom_Sponge_A"] = "90aad18c-a1ae-44c9-903f-f9c9433c9362",
     ["LOOT_Bathroom_Soap_A"] = "d32a68ff-3b6a-4d83-b0c4-0a2c44b93ea9",
 }
 
@@ -102,9 +101,10 @@ end
 ---@return table|nil, table|nil, number - a table of soap items in each character's inventory, a table of soap items in the camp chest, and the total number of soap items in the party's possession.
 function Soap:GetPartySoap()
     local party = Osi.DB_Players:Get(nil)
-    local inventoriesSoap = {}                              -- Placeholder for inventory soap gathering logic
+    local inventoriesSoap = {}
     local campChestSoap = self:GetSoapInCampChest(false)
-    local totalSoapItems = Soap:CountSoapItems(campChestSoap) -- Initialize with count of soap items in camp chest
+    -- Initialize with count of soap items in camp chest
+    local totalSoapItems = Soap:CountSoapItems(campChestSoap)
     AUSPrint(2, "Total soap items in camp chest: " .. totalSoapItems)
 
     for _, character in pairs(party) do

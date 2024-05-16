@@ -58,8 +58,8 @@
                             "Id": "use_after_combat",
                             "Name": "Use soap after combat",
                             "Type": "checkbox",
-                            "Default": false,
-                            "Description": "Whether to automatically use soap on party members after combat ends.\nWARNING: This is a bit buggy with dialogue that triggers combat, so avoid using it until it is fixed.",
+                            "Default": true,
+                            "Description": "Whether to automatically use soap on party members after combat ends.",
                             "Handles": {
                                 "DescriptionHandle": "h1e8e1b52a942477d8c15578ca06ff0831d65",
                                 "NameHandle": "hfb4649b892104d0ca91f5e2268346d953c4d"
