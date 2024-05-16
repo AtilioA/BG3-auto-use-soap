@@ -19,4 +19,14 @@ function EHandlers.OnTeleportedToCamp(character)
     end
 end
 
+function EHandlers.OnAddBlood()
+    AUSPrint(1, "Adding blood for debugging purposes")
+    Osi.ApplyStatus(GetHostCharacter(), "DEBUG_BLOOD", 10, 100)
+end
+
+function EHandlers.OnAddDirt()
+    AUSPrint(1, "Adding dirt for debugging purposes")
+    Osi.ApplyStatus(GetHostCharacter(), "DEBUG_DIRT", 10, 100)
+end
+
 return EHandlers

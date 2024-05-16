@@ -17,6 +17,8 @@ function SubscribedEvents:SubscribeToEvents()
 
     Ext.Osiris.RegisterListener("CombatEnded", 1, "after", conditionalWrapper(EHandlers.OnCombatEnded))
     Ext.Osiris.RegisterListener("TeleportedToCamp", 1, "after", conditionalWrapper(EHandlers.OnTeleportedToCamp))
+    Ext.RegisterNetListener("AUS_AddBlood", conditionalWrapper(EHandlers.OnAddBlood))
+    Ext.RegisterNetListener("AUS_AddDirt", conditionalWrapper(EHandlers.OnAddDirt))
 end
 
 return SubscribedEvents

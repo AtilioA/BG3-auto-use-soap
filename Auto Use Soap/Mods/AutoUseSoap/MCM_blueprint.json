@@ -2,12 +2,12 @@
     "SchemaVersion": 1,
     "Tabs": [
         {
-            "TabName": "General",
-            "TabId": "general",
+            "TabName": "Features",
+            "TabId": "features",
             "Sections": [
                 {
-                    "SectionId": "general_settings",
-                    "SectionName": "General settings",
+                    "SectionId": "Features",
+                    "SectionName": "Features",
                     "Settings": [
                         {
                             "Id": "mod_enabled",
@@ -20,40 +20,7 @@
                                 "DescriptionHandle": "h4e2f5b5ed2a94b4596a20ec6c1f60342dc22",
                                 "NameHandle": "hd56cfcec100a4ae7bf3997f90dd6bf749b4e"
                             }
-                        }
-                    ]
-                },
-                {
-                    "SectionId": "debugging_settings",
-                    "SectionName": "Debugging",
-                    "Settings": [
-                        {
-                            "Id": "debug_level",
-                            "Name": "Debug level",
-                            "Type": "slider_int",
-                            "Default": 0,
-                            "Description": "0 = no debug, 1 = minimal, 2 = verbose debug logs.",
-                            "Options": {
-                                "Min": 0,
-                                "Max": 2
-                            },
-                            "Handles": {
-                                "DescriptionHandle": "h2b862cb2e21b4c9a8097e3127e490f72d819",
-                                "NameHandle": "hff9b05d2f6204910bfe5aedf17242c02g38b"
-                            }
-                        }
-                    ]
-                }
-            ]
-        },
-        {
-            "TabName": "Features",
-            "TabId": "features",
-            "Sections": [
-                {
-                    "SectionId": "General features",
-                    "SectionName": "General features",
-                    "Settings": [
+                        },
                         {
                             "Id": "use_after_combat",
                             "Name": "Use soap after combat",
@@ -85,6 +52,33 @@
                             "Handles": {
                                 "DescriptionHandle": "ha678bfbbe60d41229b954deda0f9e800g767",
                                 "NameHandle": "h1499aed9f5b74e328577e45013fa0b20ea45"
+                            }
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "TabName": "Debug",
+            "TabId": "debug",
+            "Sections": [
+                {
+                    "SectionId": "debugging_settings",
+                    "SectionName": "Debugging",
+                    "Settings": [
+                        {
+                            "Id": "debug_level",
+                            "Name": "Debug level",
+                            "Type": "slider_int",
+                            "Default": 0,
+                            "Description": "0 = no debug, 1 = minimal, 2 = verbose debug logs.",
+                            "Options": {
+                                "Min": 0,
+                                "Max": 2
+                            },
+                            "Handles": {
+                                "DescriptionHandle": "h2b862cb2e21b4c9a8097e3127e490f72d819",
+                                "NameHandle": "hff9b05d2f6204910bfe5aedf17242c02g38b"
                             }
                         }
                     ]
