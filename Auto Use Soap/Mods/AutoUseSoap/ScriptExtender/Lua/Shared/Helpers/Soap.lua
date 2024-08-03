@@ -3,6 +3,8 @@ Soap = _Class:Create("HelperSoap", nil)
 
 -- Sponges shouldn't be used as they will consume action points
 Soap.regular_soap_items = {
+    ["LOOT_Bathroom_Bucket_Sponges_A"] = "8e11fada-192f-4042-8c84-dc7b78f32541",
+    ["LOOT_Bathroom_Sponge_A"] = "90aad18c-a1ae-44c9-903f-f9c9433c9362",
     ["LOOT_Bathroom_Soap_A"] = "d32a68ff-3b6a-4d83-b0c4-0a2c44b93ea9",
 }
 
@@ -164,7 +166,10 @@ function Soap:HygienizePartyMembers()
         if soapItems then
             for itemUUID, soapItem in pairs(soapItems) do
                 AUSPrint(1, "Using soap on " .. character .. " with item " .. itemUUID)
-                Osi.Use(character, itemUUID, "AutoUseSoapAutomaticUsage")
+                -- Soap usage is buggy and will consume action points, so we'll emulate the usage instead via status application.
+                -- Another problem is usage being triggered on combat start (despite no listeners)
+                Osi.ApplyStatus(character, "SOAP_WASH", 1, 100, soapItem)
+                -- Osi.Use(character, itemUUID, "AutoUseSoapAutomaticUsage", 1)
             end
         end
     end
