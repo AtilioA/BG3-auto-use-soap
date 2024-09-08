@@ -1,7 +1,6 @@
 ---@class HelperSoap
 Soap = _Class:Create("HelperSoap", nil)
 
--- Sponges shouldn't be used as they will consume action points
 Soap.regular_soap_items = {
     ["LOOT_Bathroom_Bucket_Sponges_A"] = "8e11fada-192f-4042-8c84-dc7b78f32541",
     ["LOOT_Bathroom_Sponge_A"] = "90aad18c-a1ae-44c9-903f-f9c9433c9362",
@@ -22,11 +21,13 @@ function Soap:IsSoap(object)
             return true
         end
     end
+
     for _, soapItem in pairs(self.unique_soap_items) do
         if soapItem == object then
             return true
         end
     end
+
     return false
 end
 
@@ -87,13 +88,13 @@ function Soap:GetSoapInInventory(inventory)
     return matchedItems
 end
 
-function Soap:CountSoapItems(soapItems)
-    if not soapItems then
+function Soap:CountItems(items)
+    if not items then
         return 0
     end
 
     local count = 0
-    for _, item in pairs(soapItems) do
+    for _, item in pairs(items) do
         count = count + item.amount
     end
     return count
@@ -106,14 +107,14 @@ function Soap:GetPartySoap()
     local inventoriesSoap = {}
     local campChestSoap = self:GetSoapInCampChest(false)
     -- Initialize with count of soap items in camp chest
-    local totalSoapItems = Soap:CountSoapItems(campChestSoap)
+    local totalSoapItems = Soap:CountItems(campChestSoap)
     AUSPrint(2, "Total soap items in camp chest: " .. totalSoapItems)
 
     for _, character in pairs(party) do
         local soapItems = self:GetSoapInCharacterInventory(character[1], false)
         -- Include characters even if they have no soap
         inventoriesSoap[character[1]] = soapItems
-        totalSoapItems = totalSoapItems + Soap:CountSoapItems(soapItems)
+        totalSoapItems = totalSoapItems + Soap:CountItems(soapItems)
     end
 
     AUSPrint(2, "Total soap items in party: " .. totalSoapItems)
@@ -168,7 +169,7 @@ function Soap:HygienizePartyMembers()
                 AUSPrint(1, "Using soap on " .. character .. " with item " .. itemUUID)
                 -- Soap usage is buggy and will consume action points, so we'll emulate the usage instead via status application.
                 -- Another problem is usage being triggered on combat start (despite no listeners)
-                Osi.ApplyStatus(character, "SOAP_WASH", 1, 100, soapItem)
+                Osi.ApplyStatus(character, "SOAP_WASH", 1, 100, itemUUID)
                 -- Osi.Use(character, itemUUID, "AutoUseSoapAutomaticUsage", 1)
             end
         end
