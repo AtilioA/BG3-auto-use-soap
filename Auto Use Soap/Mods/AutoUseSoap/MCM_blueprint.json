@@ -52,6 +52,21 @@
                             "Handles": {
                                 "DescriptionHandle": "ha678bfbbe60d41229b954deda0f9e800g767",
                                 "NameHandle": "h1499aed9f5b74e328577e45013fa0b20ea45"
+                            },
+                            "VisibleIf": {
+                                "Conditions": [
+                                    {
+                                        "SettingId": "use_when_entering_camp",
+                                        "ExpectedValue": "true",
+                                        "Operator": "=="
+                                    },
+                                    {
+                                        "SettingId": "mod_enabled",
+                                        "ExpectedValue": "true",
+                                        "Operator": "=="
+                                    }
+                                ],
+                                "LogicalOperator": "or"
                             }
                         }
                     ]
